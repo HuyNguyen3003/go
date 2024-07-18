@@ -1,37 +1,59 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 func main() {
-	var a [5]int
-	fmt.Println("emp:", a)
+	var s []string
+	fmt.Println("uninit:", s, s == nil, len(s) == 0)
 
-	a[4] = 100
+	s = make([]string, 3)
+	fmt.Println("init:", s, s == nil, len(s) == 0)
 
-	fmt.Println("set:", a)
-	fmt.Println("get:", a[4])
+	s[0] = "a"
+	s[1] = "b"
+	s[2] = "c"
+	fmt.Println("set:", s)
+	fmt.Println("get:", s[2])
+	fmt.Println("len:", len(s))
 
-	fmt.Println("len:", len(a))
+	s = append(s, "d")
+	s = append(s, "e", "f")
+	fmt.Println("append:", s)
 
-	b := [5]int{1, 2, 3, 4, 5}
-	fmt.Println("dcl:", b)
+	c := make([]string, len(s))
+	copy(c, s)
+	fmt.Println("copy:", c)
 
-	b = [...]int{1, 2, 3, 4, 5}
-	fmt.Println("dcl:", b)
+	l := s[2:5]
+	fmt.Println("slice1:", l)
 
-	b = [...]int{100, 3: 400, 500}
-	fmt.Println("idx:", b)
+	l = s[:5]
+	fmt.Println("slice2:", l)
 
-	var twoD [2][3]int
-	for i := 0; i < 2; i++ {
-		for j := 0; j < 3; j++ {
+	l = s[2:]
+	fmt.Println("slice3:", l)
+
+	t := []string{"g", "h", "i"}
+	fmt.Println("dcl:", t)
+
+	t2 := []string{"g", "h", "i"}
+	if slices.Equal(t, t2) {
+		fmt.Println("t is equal to t2")
+	}
+
+	twoD := make([][]int, 3)
+	fmt.Println("2d:", twoD)
+
+	for i := 0; i < 3; i++ {
+		innerLen := i + 1
+		twoD[i] = make([]int, innerLen)
+		for j := 0; j < innerLen; j++ {
 			twoD[i][j] = i + j
 		}
 	}
-	fmt.Println("2d:", twoD)
-
-	twoD = [2][3]int{{1, 2, 3}, {4, 5, 6}}
-
 	fmt.Println("2d:", twoD)
 
 }
