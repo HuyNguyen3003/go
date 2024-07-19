@@ -2,30 +2,17 @@ package main
 
 import "fmt"
 
+func plus(a int, b int) int {
+	return a + b
+}
+
+func plusplus(a, b, c int) int {
+	return a + b + c
+}
+
 func main() {
-	nums := []int{2, 3, 4}
-	sum := 0
-	for _, num := range nums {
-		sum += num
-	}
-	fmt.Println("sum:", sum)
-
-	for i, num := range nums {
-		if num == 3 {
-			fmt.Println("index:", i)
-		}
-	}
-
-	kvs := map[string]string{"a": "apple", "b": "banana"}
-	for k, v := range kvs {
-		fmt.Printf("%s -> %s\n", k, v)
-	}
-
-	for k := range kvs {
-		fmt.Println("key", k)
-	}
-
-	for i, v := range "go" {
-		fmt.Println(i, v)
-	}
+	res := plus(1, 2)
+	fmt.Println("1+2 =", res)
+	res = plusplus(1, 2, 3)
+	fmt.Println("1+2+3 =", res)
 }
