@@ -2,58 +2,39 @@ package main
 
 import (
 	"fmt"
-	"slices"
+	"maps"
 )
 
 func main() {
-	var s []string
-	fmt.Println("uninit:", s, s == nil, len(s) == 0)
+	m := make(map[string]int)
 
-	s = make([]string, 3)
-	fmt.Println("init:", s, s == nil, len(s) == 0)
+	m["key1"] = 7
+	m["key2"] = 13
 
-	s[0] = "a"
-	s[1] = "b"
-	s[2] = "c"
-	fmt.Println("set:", s)
-	fmt.Println("get:", s[2])
-	fmt.Println("len:", len(s))
+	fmt.Println("map:", m)
 
-	s = append(s, "d")
-	s = append(s, "e", "f")
-	fmt.Println("append:", s)
+	v1 := m["key1"]
+	fmt.Println("v1: ", v1)
 
-	c := make([]string, len(s))
-	copy(c, s)
-	fmt.Println("copy:", c)
+	v3 := m["key3"]
+	fmt.Println("v3: ", v3)
 
-	l := s[2:5]
-	fmt.Println("slice1:", l)
+	delete(m, "key2")
+	fmt.Println("map:", m)
 
-	l = s[:5]
-	fmt.Println("slice2:", l)
+	clear(m)
+	fmt.Println("map:", m)
 
-	l = s[2:]
-	fmt.Println("slice3:", l)
+	_, prs := m["key2"]
+	fmt.Println("prs:", prs)
 
-	t := []string{"g", "h", "i"}
-	fmt.Println("dcl:", t)
+	n := map[string]int{"foo": 1, "bar": 2}
+	fmt.Println("map:", n)
 
-	t2 := []string{"g", "h", "i"}
-	if slices.Equal(t, t2) {
-		fmt.Println("t is equal to t2")
+	n2 := map[string]int{"foo": 1, "bar": 2}
+	if maps.Equal(n, n2) {
+		fmt.Println("Maps are equal")
+	} else {
+		fmt.Println("Maps are not equal")
 	}
-
-	twoD := make([][]int, 3)
-	fmt.Println("2d:", twoD)
-
-	for i := 0; i < 3; i++ {
-		innerLen := i + 1
-		twoD[i] = make([]int, innerLen)
-		for j := 0; j < innerLen; j++ {
-			twoD[i][j] = i + j
-		}
-	}
-	fmt.Println("2d:", twoD)
-
 }
