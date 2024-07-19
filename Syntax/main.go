@@ -1,40 +1,31 @@
 package main
 
-import (
-	"fmt"
-	"maps"
-)
+import "fmt"
 
 func main() {
-	m := make(map[string]int)
+	nums := []int{2, 3, 4}
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	fmt.Println("sum:", sum)
 
-	m["key1"] = 7
-	m["key2"] = 13
+	for i, num := range nums {
+		if num == 3 {
+			fmt.Println("index:", i)
+		}
+	}
 
-	fmt.Println("map:", m)
+	kvs := map[string]string{"a": "apple", "b": "banana"}
+	for k, v := range kvs {
+		fmt.Printf("%s -> %s\n", k, v)
+	}
 
-	v1 := m["key1"]
-	fmt.Println("v1: ", v1)
+	for k := range kvs {
+		fmt.Println("key", k)
+	}
 
-	v3 := m["key3"]
-	fmt.Println("v3: ", v3)
-
-	delete(m, "key2")
-	fmt.Println("map:", m)
-
-	clear(m)
-	fmt.Println("map:", m)
-
-	_, prs := m["key2"]
-	fmt.Println("prs:", prs)
-
-	n := map[string]int{"foo": 1, "bar": 2}
-	fmt.Println("map:", n)
-
-	n2 := map[string]int{"foo": 1, "bar": 2}
-	if maps.Equal(n, n2) {
-		fmt.Println("Maps are equal")
-	} else {
-		fmt.Println("Maps are not equal")
+	for i, v := range "go" {
+		fmt.Println(i, v)
 	}
 }
